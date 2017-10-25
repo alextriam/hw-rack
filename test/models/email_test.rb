@@ -2,7 +2,7 @@ require 'test/unit/context'
 require './app/models/email'
 
 module EmailCollector
-  DATABASE = './db/test.txt'
+  DATABASE = './db/email_addresses.txt'
 end
 
 class EmailTest < Test::Unit::TestCase

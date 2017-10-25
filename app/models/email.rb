@@ -4,23 +4,22 @@ module EmailCollector
     attr_accessor :email
 
     def initialize(email)
-            if email.scan(/@/) == '@'
-              self.save
-            else
-              self.errors
-            end
+      @email = email
     end
 
    def save
-      File.open('./db/email_addresses.txt', 'a'){ |file| file.puts @email }
-      puts @email.to_s + "save email"
-      return @errors = ''
+    if email.split(/@/).size == 2
+      File.open(EmailCollector::DATABASE, 'a'){ |file| file.puts @email }
+      @errors = ''
+    else
+     @errors = 'Wrong email format.'
+     return false
+    end
+
    end
 
    def errors
-
-     return @errors = 'Wrong email format'
-
-     end
+     @errors
+   end
    end
 end
